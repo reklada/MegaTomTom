@@ -8,6 +8,7 @@ TagManager:
   - Monster_2
   - Ranaatti
   - Big_Monster
+  - Booster
   layers:
   - Default
   - TransparentFX
