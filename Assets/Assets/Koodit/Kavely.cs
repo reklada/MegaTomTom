@@ -6,6 +6,6 @@ public class Kavely : MonoBehaviour {
     public float xMove;
     private void Update()
     {
-        transform.Translate(Vector3.left * xMove);
+        transform.Translate(Vector3.left * xMove *Time.deltaTime);
     }
 }
