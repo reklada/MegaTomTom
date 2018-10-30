@@ -16,7 +16,7 @@ void OnTriggerEnter2D(Collider2D col)
         if (col.gameObject.tag == "Player")
         {
             Time.timeScale = 0; 
-            SceneManager.LoadScene("Event");
+            SceneManager.LoadScene("Ampuminen");
             Destroy(this.gameObject);
         }
     }
