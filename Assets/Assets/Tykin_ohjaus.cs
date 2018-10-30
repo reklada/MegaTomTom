@@ -4,29 +4,24 @@ using UnityEngine;
 
 public class Tykin_ohjaus : MonoBehaviour
 {
-    public HingeJoint2D tykki;
-    public bool controlled;
+    private float rotationZ;
+    private float sensitivityZ = 0.5f;
 
     void Start()
     {
-        controlled = true;
+        transform.rotation = Quaternion.identity;
     }
 
     void Update()
     {
-        if (controlled == true)
-        {
+        LockedRotation();
+    }
 
-            if (Input.GetKey(KeyCode.A))
-            {
-                RectTransform rectTransform = GetComponent<RectTransform>();
-                rectTransform.Rotate(new Vector3(0, 0, 2));
-            }
-            if (Input.GetKey(KeyCode.D))
-            {
-                RectTransform rectTransform = GetComponent<RectTransform>();
-                rectTransform.Rotate(new Vector3(0, 0, -2));
-            }
-        }
+    void LockedRotation()
+    {
+        rotationZ += Input.GetAxis("Horizontal") * 2;
+        rotationZ = Mathf.Clamp(rotationZ, -22f, 22f);
+
+        transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, -rotationZ);
     }
 }
