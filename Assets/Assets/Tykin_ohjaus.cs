@@ -5,16 +5,28 @@ using UnityEngine;
 public class Tykin_ohjaus : MonoBehaviour
 {
     public HingeJoint2D tykki;
-    public float force;
-    private float acceleration;
-    private float powah;
+    public bool controlled;
+
+    void Start()
+    {
+        controlled = true;
+    }
 
     void Update()
     {
-        // up and down keys, range [-1, 1]
-        acceleration = Input.GetAxis("Vertical");
+        if (controlled == true)
+        {
 
-        // key up is powah * 1, key down is powah * -1, no key is powah * 0
-        tykki.motor.force = powah * acceleration;
+            if (Input.GetKey(KeyCode.A))
+            {
+                RectTransform rectTransform = GetComponent<RectTransform>();
+                rectTransform.Rotate(new Vector3(0, 0, 2));
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                RectTransform rectTransform = GetComponent<RectTransform>();
+                rectTransform.Rotate(new Vector3(0, 0, -2));
+            }
+        }
     }
 }
