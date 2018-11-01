@@ -22,16 +22,10 @@ public class GranadeLaunch : MonoBehaviour
     void Update()
     {
         HandleAttacks();
-        if (Input.GetKeyDown(KeyCode.Space))
         if (Input.GetKey(KeyCode.Space))
         {
-            Debug.Log(force);
+            //Debug.Log(force);
             force += Time.deltaTime * 25;
-        }
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            Debug.Log(force);
-            force += forceIncrease*Time.deltaTime;
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
@@ -42,7 +36,6 @@ public class GranadeLaunch : MonoBehaviour
                 Granade.AddForce(Cannon.right * force);
 
                 attackTimer = attackCd;
-                forceIncrease = 0;
                 force = 0;
                 Destroy(Granade, 5f);
             }
