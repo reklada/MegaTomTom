@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Tykin_ohjaus : MonoBehaviour
 {
-    public HingeJoint2D tykki;
     public bool controlled;
+
+    private float minRotation = -20;
+    private float maxRotation = 20;
 
     void Start()
     {
@@ -16,16 +18,15 @@ public class Tykin_ohjaus : MonoBehaviour
     {
         if (controlled == true)
         {
-
             if (Input.GetKey(KeyCode.A))
             {
                 RectTransform rectTransform = GetComponent<RectTransform>();
-                rectTransform.Rotate(new Vector3(0, 0, 2));
+                rectTransform.Rotate(new Vector3(0, 0, 1));
             }
             if (Input.GetKey(KeyCode.D))
             {
                 RectTransform rectTransform = GetComponent<RectTransform>();
-                rectTransform.Rotate(new Vector3(0, 0, -2));
+                rectTransform.Rotate(new Vector3(0, 0, -1));
             }
         }
     }

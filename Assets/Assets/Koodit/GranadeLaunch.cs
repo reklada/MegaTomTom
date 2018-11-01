@@ -11,6 +11,8 @@ public class GranadeLaunch : MonoBehaviour
     private float attackTimer = 0;
     private float attackCd = 1;
 
+    private float force;
+    private float forceIncrease = 2;
 
     void Start()
     {
@@ -20,16 +22,21 @@ public class GranadeLaunch : MonoBehaviour
     void Update()
     {
         HandleAttacks();
-
         if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log(force);
+            force += forceIncrease*Time.deltaTime;
+        }
+        if (Input.GetKeyUp(KeyCode.Space))
         {
             if (attackTimer <= 0)
             {
                 Rigidbody2D Granade;
                 Granade = Instantiate(myRB, Cannon.position, Cannon.rotation) as Rigidbody2D;
-                Granade.AddForce(Cannon.right * 25);
+                Granade.AddForce(Cannon.right * force);
 
                 attackTimer = attackCd;
+                forceIncrease = 0;
                 DestroyObject(myRB, 1f);
             }
         }
