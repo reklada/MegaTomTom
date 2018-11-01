@@ -4,24 +4,30 @@ using UnityEngine;
 
 public class Tykin_ohjaus : MonoBehaviour
 {
-    private float rotationZ;
-    private float sensitivityZ = 0.5f;
+    public bool controlled;
+
+    private float minRotation = -20;
+    private float maxRotation = 20;
 
     void Start()
     {
-        transform.rotation = Quaternion.identity;
+        controlled = true;
     }
 
     void Update()
     {
-        LockedRotation();
-    }
-
-    void LockedRotation()
-    {
-        rotationZ += Input.GetAxis("Horizontal") * 2;
-        rotationZ = Mathf.Clamp(rotationZ, -22f, 22f);
-
-        transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, -rotationZ);
+        if (controlled == true)
+        {
+            if (Input.GetKey(KeyCode.A))
+            {
+                RectTransform rectTransform = GetComponent<RectTransform>();
+                rectTransform.Rotate(new Vector3(0, 0, 1));
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                RectTransform rectTransform = GetComponent<RectTransform>();
+                rectTransform.Rotate(new Vector3(0, 0, -1));
+            }
+        }
     }
 }
