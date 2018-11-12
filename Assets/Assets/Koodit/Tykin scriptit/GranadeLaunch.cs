@@ -24,8 +24,12 @@ public class GranadeLaunch : MonoBehaviour
         HandleAttacks();
         if (Input.GetKey(KeyCode.Space))
         {
-            //Debug.Log(force);
+            Debug.Log(force);
             force += Time.deltaTime * 25;
+            if (force > 60)
+            {
+                force = 0;
+            }
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
